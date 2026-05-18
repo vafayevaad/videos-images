@@ -69,11 +69,6 @@ app.post('/upload/video', videoUpload.array('video'), (req, res) => {
   })
 })
 
-app.use((err, req, res, next) => {
-  res.status(400).json({ error: err.message })
-})
-
-
 app.listen(3000, () => {
   console.log("ishladi");
 })
