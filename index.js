@@ -1,8 +1,12 @@
 const express = require("express")
 const path = require("path")
 const multer = require("multer")
+const fs = require("fs")
 
 const app = express()
+
+fs.mkdirSync('upload/images', { recursive: true })
+fs.mkdirSync('upload/videos', { recursive: true })
 
 const imageStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -40,7 +44,7 @@ app.post('/upload/image', imageUpload.array('image'), (req, res) => {
 
 const videoStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'upload/images/')
+    cb(null, 'upload/videos/')
   },
   filename: (req, file, cb) => {
   const ext = path.extname(file.originalname)
